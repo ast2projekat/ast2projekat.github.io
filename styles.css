@@ -24,6 +24,7 @@ body {
   margin: 0;
 
 }
+.serif { font-family: georgia, serif; }
 
 .tm-container {
   max-width: 1000px;
