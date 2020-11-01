@@ -261,6 +261,7 @@
 													<h2 class="tm-section-header">4. Analiza O-C dijagrama </h2>
 												        <p color = "#263f40"> Izabrale smo sistem čije ćemo <a href = "AD_And_OC.csv" target = "blank"> podatke </a> analizirati. Izabrale smo baš te podatke osnovu izgleda O-C dijagrama, količine podataka i <a href = "ADAnd (1).pdf" target = "blank">rada</a> koji se bavi tim sistemom. Pošto samo najskoriji podaci ovog sistema pokazuju očiglednu sinusnu promenu (možda zbog nepouzdanosti prethodnih podataka) uzele smo samo te podatke radi lakšeg fitovanja.Prvo smo podatke skinule sa <a href = "https://www.aavso.org/bob-nelsons-o-c-files" target = "blank"> AAVSO sajta </a>. Tu se u podacima nalaze i podaci za period sistema, početnu epohu i razni grafici iz radova. 
 													<br>
+														  <h3 class="tm-section-header">4.1. Pisanje koda za analizu O-C dijagrama uz pomoć Irwinovog rada </h3>
 													<p color = "#263f40"> Probale smo prvo da fitujemo podatke oslanjajući se na  <a href = "http://articles.adsabs.harvard.edu/pdf/1952ApJ...116..211I target = "blank"> Irwinov rad </a>. Prvo smo probale da funkciju fitujemo običnom sinusnom funkcijom i tražimo gde su izvodi najvići i najmanji. To nam je bilo neophodno da bi izračunale uglove u tim tačkama i da bi kasnije doble vrednosti za asin(i) itd. Pošto smo tražili izvode sinusne funkcije uglovi su bili identični i nismo mogli da dobijemo zadovoljavajuće rezultate. Probale smo da tražimo i izvode između dve susedne tačke (podatka) međutim ni to nije radilo iz razloga što se na nekim mestima nagomilavaju podaci i onda te vrednosti koje su dobijene nisu upotrebljive. Zatim smo probale da fitujemo samo pi/2 perioda sinusne promene. Na taj način bi dobili različite vrednosti za najveći izvod koji se nalazi u prvoj četvrtini perioda i najmanji izvod koji se nalazi u drugoj četvrtini perioda. Ovo isto nije uspelo i dobijale smo jako male uglove i netačna rešenja.
 													<br>
 												        <p color = "#263f40"> Pokušale smo i da same napišemo kod koji bi fitovao podatke samo koristeći jednačinu iz Irwinovog rada. Ovo nismo uspele jer ona zavisi od mnogo parametara za koje bi morale da predpostavljamo vrednosti. Nismo mogle da predpostavimo vrednosti za pravu anomaliju jer se ona menja po vremenu. Da bi smo nju izračunale napisale smo kod koji to radi na sledeći način.
@@ -271,13 +272,17 @@
 													</ol>	
 													<p color = "#263f40"> Ovo nije radilo jer kasnije tako dobijene prave anomalije nismo uspele da ubacimo u jednačinu kojom bi fitovale podatke.
 													<br>
+														<h3 class="tm-section-header">4.2. Analiza O-C dijagrama pomoću OCFit python paketa </h3>
 													<p color = "#263f40"> Posle svih ovih neuspelih pokušaja odlučile smo da koristimo kod koji je već napisan i koji analizira O-C dijagrame. Koristimo funkciju LiTE3 koja fituje uz pomoć jednačine iz Irwinovog rada. U ovom kodu je jedino neophodno da se stave neke granične vrednosti za parametre. Te vrednosti predpostavljamo na sledeći način:
 													<ul>
 													<li><b>Period</b> računamo uz pomoć LombScargle algoritma i za granice stavljamo za 500 manji i veći broj od tako dobijenog perioda.
 													<li><b>t0</b> dobijamo tako što nađemo x koordinatu tačke sa najvećom vrednosti na y osi jer negde u blizini nje je treće telo u perihelu. Za granice stavljamo za 500 manju i veću vrednost.
-													<li> Za <b>pravu anomaliju</b> stavimo da može da bude bilo koja vrednost od 0 do 2*pi.
-													<li> Za<b>ekscentricitet</b> stavljamo da bude bilo koja vrednost između 0 i 1.
+													<li> <b>Prava anomalija</b> granice su 0 i 2*pi.
+													<li> <b>Ekscentricitet</b> granice su 0 i 1.
 													<li><b>asin(i)</b>
+													</ul>
+													<br>
+													Ovako smo analizirale podatke za dva različita sistema i uporedili dobijene rezultate sa podacima iz literature za te sisteme.Dobile smo sledeće grafike:
 								</section>
 			</section>
 		</div>
